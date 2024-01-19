@@ -3,15 +3,21 @@ const UserModel = require('../models/User');
 const CommentModel = require('../models/comment');
 const PostModel = require('../models/post');
 const LikeModel = require('../models/like');
+require('dotenv').config();
 
 const sequelize = new Sequelize(
-  'new-db',
-  'root',
-  'new-shoot',
+  process.env.DB_NAME || 'new-db',
+  process.env.DB_USER || 'root',
+  process.env.DB_PASSWORD || 'new-shoot',
   {
-    host: 'localhost',
-    dialect: 'mysql'
-  }
+    host: process.env.DB_HOST || 'localhost',
+    dialect: 'mysql',
+    retry: {
+      max: 5, 
+      timeout: 3000, 
+    },
+  },
+ 
 );
 
 const User = UserModel(sequelize);
