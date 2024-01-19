@@ -6,11 +6,11 @@ const LikeModel = require('../models/like');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME || 'new-db',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASSWORD || 'new-shoot',
+  process.env.MYSQL_DATABASE ,
+  process.env.DB_USER ,
+  process.env.MYSQL_PASSWORD ,
   {
-    host: process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST,
     dialect: 'mysql',
     retry: {
       max: 5, 
